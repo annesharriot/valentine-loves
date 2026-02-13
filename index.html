@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be Mine? 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    background:linear-gradient(135deg,#ff4e91,#ff9a9e);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+/* Floating Hearts */
+.heart{
+    position:absolute;
+    font-size:20px;
+    animation:float 6s linear infinite;
+    opacity:0.7;
+}
+@keyframes float{
+    0%{transform:translateY(100vh) scale(0.5);}
+    100%{transform:translateY(-10vh) scale(1.2);}
+}
+
+/* Glass Card */
+.card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    color:#fff;
+    width:350px;
+    box-shadow:0 0 40px rgba(0,0,0,0.2);
+    animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+h1{
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+.buttons{
+    margin-top:20px;
+    position:relative;
+    height:80px;
+}
+
+button{
+    padding:10px 25px;
+    border:none;
+    border-radius:25px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#yesBtn{
+    background:#fff;
+    color:#ff4e91;
+    font-weight:bold;
+}
+
+#noBtn{
+    background:#ff2e63;
+    color:#fff;
+    position:absolute;
+}
+
+/* Final Screen */
+#final{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100vh;
+    width:100%;
+    background:#000;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    display:none;
+}
+
+#final h2{
+    font-size:28px;
+    animation:zoom 2s infinite alternate;
+}
+
+@keyframes zoom{
+    from{transform:scale(1);}
+    to{transform:scale(1.2);}
+}
+
+/* Emoji Rain */
+.emoji{
+    position:absolute;
+    font-size:25px;
+    animation:fall 4s linear infinite;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-10vh);}
+    100%{transform:translateY(100vh);}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>
+        From the day you came into my life... 💕<br><br>
+        My world became beautiful 🌎✨<br><br>
+        Will you be mine forever? 😘
+    </h1>
+
+    <div class="buttons">
+        <button id="yesBtn">YES 💖</button>
+        <button id="noBtn">NO 😏</button>
+    </div>
+</div>
+
+<div id="final">
+    <h2>Yayyy! You are officially mine forever 💍💖</h2><br>
+    <h2>Love you machan😘</h2>
+    <h2>Happy Valentine's Day darling💋</h2>
+    <h2>En chellam</h2>
+    <p style="margin-top:20px;font-size:40px;">😘💋💞</p>
+</div>
+
+<script>
+// Floating hearts
+for(let i=0;i<25;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(heart);
+}
+
+// No button escape
+const noBtn=document.getElementById("noBtn");
+let clickCount=0;
+
+noBtn.addEventListener("mouseover",()=>{
+    noBtn.style.left=Math.random()*250+"px";
+    noBtn.style.top=Math.random()*50+"px";
+});
+
+noBtn.addEventListener("click",()=>{
+    clickCount++;
+    if(clickCount>=3){
+        alert("Are you sure baby? 🥺😭");
+        emojiRain("😭");
+    }
+});
+
+// Yes button
+document.getElementById("yesBtn").addEventListener("click",()=>{
+    document.querySelector(".card").style.display="none";
+    document.getElementById("final").style.display="flex";
+    emojiRain("💖");
+    emojiRain("🌹");
+});
+
+// Emoji rain function
+function emojiRain(symbol){
+    for(let i=0;i<20;i++){
+        let emoji=document.createElement("div");
+        emoji.className="emoji";
+        emoji.innerHTML=symbol;
+        emoji.style.left=Math.random()*100+"vw";
+        emoji.style.animationDuration=(2+Math.random()*3)+"s";
+        document.body.appendChild(emoji);
+    }
+}
+</script>
+
+</body>
+</html>
